@@ -1,0 +1,124 @@
+
+{% extends 'base.html'%}
+{% block main %}
+<!-- Start features Area -->
+<section class="features-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <h4>Qidirish</h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <h4>Murojaat qilish</h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <h4>Xavfsizlik</h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <h4>Bildirishnomalar</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End features Area -->
+
+
+<!-- Start feature-cat Area -->
+<section class="feature-cat-area pt-100" id="category">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-10">
+                <div class="title text-center">
+                    <h1 class="mb-10">Ish yo'nalishlari</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for i in yonalishlar %}
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="single-fcat">
+                    <a href="{% url 'categories' i.id %}">
+                        <img src="{{ i.image.url }}" alt="">
+                    </a>
+                    <p>{{ i.name }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- End feature-cat Area -->
+
+<!-- Start post Area -->
+<section class="post-area section-gap" id="vacancy">
+          <div class="title text-center">
+                    <h1 class="mb-10">Ish e'lonlari</h1>
+                </div>
+    <div class="container">
+        <div class="row justify-content-center d-flex">
+            <div class="col-lg-8 post-list">
+                {% for vacancy in three_vacan %}
+                <div class="single-post d-flex flex-row">
+                    <div class="thumb">
+                        <img src="img/post.png" alt="">
+                        <ul class="tags">
+                            <li>
+                                <a href="/">{{ vacancy.yonalish }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="details justify-content-between">
+                        <div class="title d-flex flex-row justify-content-between">
+                            <div class="titles">
+                                <a href="/"><h4> {{ vacancy.name }}</h4></a>
+                            </div>
+                        </div>
+                        <p> {{ vacancy.requirements }}</p>
+                        <h5>Ish tajriba: {{ vacancy.required_work_experience }}</h5>
+                        <p class="address"><span class="lnr lnr-map"></span> {{ vacancy.addres }}</p>
+                        <p class="address"><span class="lnr lnr-database"></span> {{ vacancy.salary }}$</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <a class="text-uppercase loadmore-btn mx-auto d-block" href="{% url 'all_vacan' %}">Ko'proq ko'rish</a>
+
+            </div>
+            <div class="col-lg-4 sidebar">
+                <div class="single-slidebar">
+                    <h4>Joylashuv bo'yicha ish o'rinlari</h4>
+                    <ul class="cat-list">
+                        {% for i in areas %}
+                        <li><a class="justify-content-between d-flex" href="{% url 'areas' i.id %}"><p>{{ i.name }}</p></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="single-slidebar">
+                    <h4>Yo'nalish bo'yicha ish o'rinlari</h4>
+                    <ul class="cat-list">
+                        {% for i in yonalishlar %}
+                        <li><a class="justify-content-between d-flex" href="category.html"><p>{{ i.name }}</p></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End post Area -->
+
+{% endblock main%}
+
+
+
+
+

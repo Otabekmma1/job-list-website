@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{% block main %}
+<!-- Start post Area -->
+<section class="post-area section-gap">
+    <div class="container">
+        <div class="row justify-content-center d-flex">
+            <div class="col-lg-8 post-list">
+                {% for vacancy in vacancies %}
+                <div class="single-post d-flex flex-row">
+                    <div class="thumb">
+                        <img src="img/post.png" alt="">
+                        <ul class="tags">
+                            <li>
+                                <a href="{% url 'categories' vacancy.yonalish_id %}">{{ vacancy.yonalish }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="details justify-content-between">
+                        <div class="title d-flex flex-row justify-content-between">
+                            <div class="titles">
+                                <a href="single.html"><h4> {{ vacancy.name }}</h4></a>
+                            </div>
+                        </div>
+                        <p> {{ vacancy.requirements }}</p>
+                        <h5>Ish tajriba: {{ vacancy.required_work_experience }}</h5>
+                        <p class="address"><span class="lnr lnr-map"></span> {{ vacancy.addres }}</p>
+                        <p class="address"><span class="lnr lnr-database"></span> {{ vacancy.salary }}$</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+            <div class="col-lg-4 sidebar">
+                <div class="single-slidebar">
+                    <h4>Joylashuv bo'yicha ish o'rinlari</h4>
+                    <ul class="cat-list">
+                        {% for i in areas %}
+                        <li><a class="justify-content-between d-flex" href="{% url 'areas' i.id %}"><p>{{ i.name }}</p></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="single-slidebar">
+                    <h4>Yo'nalish bo'yicha ish o'rinlari</h4>
+                    <ul class="cat-list">
+                        {% for i in yonalishlar %}
+                        <li><a class="justify-content-between d-flex" href="{% url 'categories' i.id %}"><p>{{ i.name }}</p></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End post Area -->
+{% endblock main %}
